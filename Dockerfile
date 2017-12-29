@@ -78,7 +78,7 @@ RUN mkdir -p src \
       ../src/ \
  && make -j $(nproc) \
  && if [ $BUILD_TESTS = ON ] ; then  make test ; fi  \
- && make install
+ && sudo make install
 
 
 # VCS
