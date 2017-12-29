@@ -48,11 +48,11 @@ import subprocess
 import sys
 
 # Indicate the openMVG and openMVS binary directories
-OPENMVG_BIN = "/home/ckeller/src/openMVG_build/Linux-x86_64-RELEASE"
-OPENMVS_BIN = "/home/ckeller/src/openMVS_build/bin"
+OPENMVG_BIN = "/usr/local/bin"
+OPENMVS_BIN = "/usr/local/bin"
 
 # Indicate the openMVG camera sensor width directory
-CAMERA_SENSOR_WIDTH_DIRECTORY = OPENMVG_BIN
+CAMERA_SENSOR_WIDTH_DIRECTORY = /home/omvg/docker_mvgmvs/extra
 
 DEBUG=False
 
@@ -233,7 +233,6 @@ for cstep in range(conf.first_step, conf.last_step+1):
     cmdline = [steps[cstep].cmd] + steps[cstep].opt + opt
 
     if not DEBUG :
-        print(cmdline)
         pStep = subprocess.Popen(cmdline)
         pStep.wait()
     else:

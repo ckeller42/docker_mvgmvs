@@ -99,4 +99,6 @@ RUN  mkdir -p src && cd \
 
 RUN rm -rf src/
 
+run git clone https://github.com/ckeller42/docker_mvgmvs.git
+
 CMD ["/bin/bash", "-l"]
