@@ -70,7 +70,7 @@ RUN mkdir -p src \
  && git clone --single-branch -b $branch --recursive https://github.com/openmvg/openmvg openMVG \
  && cd openMVG \
  && git submodule update --init --recursive \
- && cd .. 
+ && cd .. \
  && mkdir -p openMVG_build \
  && cd openMVG_build \
  && cmake .  ../openMVG/ \ 
