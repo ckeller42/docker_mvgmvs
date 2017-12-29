@@ -73,7 +73,7 @@ RUN mkdir -p src \
  && cd .. \
  && mkdir -p openMVG_build \
  && cd openMVG_build \
- && cmake .  ../openMVG/ \ 
+ && cmake .  ../openMVG/src/ \ 
       -DCMAKE_BUILD_TYPE=Release \
       -DOpenMVG_BUILD_EXAMPLES=$BUILD_EXAMPLES \
  && make -j $(nproc) \
