@@ -99,6 +99,8 @@ RUN  mkdir -p src && cd \
 
 RUN rm -rf src/
 
-run git clone https://github.com/ckeller42/docker_mvgmvs.git
+RUN git clone https://github.com/ckeller42/docker_mvgmvs.git
+RUN git clone https://github.com/openMVG/ImageDataset_SceauxCastle
+#RUN docker_mvgmvs/extra/MvgMvs_Pipeline.py /home/$user/ImageDataset_SceauxCastle/images /home/$user/castle
 
 CMD ["/bin/bash", "-l"]
