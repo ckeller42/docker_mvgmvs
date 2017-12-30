@@ -86,7 +86,7 @@ RUN  mkdir -p src && cd src \
  && make -j $(nproc) && sudo make install 
 
 RUN rm -rf src/
-RUN git clone https://github.com/ckeller42/docker_mvgmvs.git
+RUN git clone https://github.com/ckeller42/docker_mvgmvs.git \
  && git clone https://github.com/openMVG/ImageDataset_SceauxCastle
 
 #RUN docker_mvgmvs/extra/MvgMvs_Pipeline.py /home/$user/ImageDataset_SceauxCastle/images /home/$user/castle
