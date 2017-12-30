@@ -79,7 +79,7 @@ RUN mkdir -p src \
  && cd src/ && git clone --single-branch -b $branch https://github.com/cdcseacave/VCG.git vcglib
 
 # openMVS
-RUN  mkdir -p src && cd \
+RUN  mkdir -p src && cd src \
  && git clone --single-branch -b $branch https://github.com/cdcseacave/openMVS.git openMVS \
  && mkdir openMVS_build && cd openMVS_build \
  && cmake . ../openMVS -DCMAKE_BUILD_TYPE=Release -DVCG_DIR="/home/$user/src/vcglib" \
