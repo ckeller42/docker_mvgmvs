@@ -49,7 +49,7 @@ import sys
 
 # Indicate the openMVG and openMVS binary directories
 OPENMVG_BIN = "/usr/local/bin"
-OPENMVS_BIN = "/usr/local/bin"
+OPENMVS_BIN = "/usr/local/bin/OpenMVS"
 
 # Indicate the openMVG camera sensor width directory
 CAMERA_SENSOR_WIDTH_DIRECTORY = /home/omvg/docker_mvgmvs/extra

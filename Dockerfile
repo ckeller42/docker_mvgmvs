@@ -12,30 +12,30 @@ RUN apt-get update \
     vim 
     
 # setup user
-RUN useradd --create-home --system --shell /bin/bash $user && echo "$user:$user" | chpasswd  &&  adduser $user sudo
-RUN echo "$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN useradd --create-home --system --shell /bin/bash $user && echo "$user:$user" | chpasswd \
+&&  adduser $user sudo && echo "$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+RUN apt-get update \
+    && apt-get install -y \
+    cmake \
+    libxxf86vm-dev \
+    libxi-dev \
+    python-pip \
+    libglu1-mesa-dev \
+    freeglut3-dev libglew-dev libglfw3-dev \
+    libboost-iostreams-dev libboost-program-options-dev libboost-system-dev \
+    libboost-serialization-dev \
+    libopencv-dev libcgal-dev libcgal-qt5-dev \
+    libatlas-base-dev libsuitesparse-dev
 
 
 # setup system and get build dependencies
-
-
 USER $user
 ENV PATH $PATH:/home/$user/bin/
 
 # clone build and install
 WORKDIR /home/$user
 
-
-
-
-RUN sudo apt-get update \
-    && sudo apt-get install -y \
-    cmake \
-    libxxf86vm-dev \
-    libxi-dev \
-    python-pip \
-    libglu1-mesa-dev
 
 # EIGEN
 RUN mkdir -p src && cd src \
@@ -44,12 +44,6 @@ RUN mkdir -p src && cd src \
  && cmake . ../eigen \
  && make -j $(nproc) && sudo make install
 
-
-RUN sudo apt-get update \
-    && sudo apt-get install -y \
-    libboost-iostreams-dev libboost-program-options-dev libboost-system-dev libboost-serialization-dev \
-    libopencv-dev libcgal-dev libcgal-qt5-dev \
-    libatlas-base-dev libsuitesparse-dev
 
 # CERES
 RUN mkdir -p src \ 
@@ -84,23 +78,17 @@ RUN mkdir -p src \
 RUN mkdir -p src \
  && cd src/ && git clone --single-branch -b $branch https://github.com/cdcseacave/VCG.git vcglib
 
-
-RUN sudo apt-get update \
- && sudo apt-get -y install freeglut3-dev libglew-dev libglfw3-dev
-
-
 # openMVS
 RUN  mkdir -p src && cd \
  && git clone --single-branch -b $branch https://github.com/cdcseacave/openMVS.git openMVS \
  && mkdir openMVS_build && cd openMVS_build \
  && cmake . ../openMVS -DCMAKE_BUILD_TYPE=Release -DVCG_DIR="/home/$user/src/vcglib" \
- -DCMAKE_INSTALL_PREFIX:PATH=/usr/local \
- && make -j $(nproc) && sudo make install
+ && make -j $(nproc) && sudo make install 
 
 RUN rm -rf src/
-
 RUN git clone https://github.com/ckeller42/docker_mvgmvs.git
-RUN git clone https://github.com/openMVG/ImageDataset_SceauxCastle
+ && git clone https://github.com/openMVG/ImageDataset_SceauxCastle
+
 #RUN docker_mvgmvs/extra/MvgMvs_Pipeline.py /home/$user/ImageDataset_SceauxCastle/images /home/$user/castle
 
 CMD ["/bin/bash", "-l"]
