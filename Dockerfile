@@ -22,6 +22,7 @@ RUN apt-get update \
     libxi-dev \
     python-pip \
     libglu1-mesa-dev \
+    libxmu-dev libxi-dev\
     freeglut3-dev libglew-dev libglfw3-dev \
     libboost-iostreams-dev libboost-program-options-dev libboost-system-dev \
     libboost-serialization-dev \
