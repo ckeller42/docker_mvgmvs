@@ -13,7 +13,7 @@ RUN apt-get update \
     
 # setup user
 RUN useradd --create-home --system --shell /bin/bash $user && echo "$user:$user" | chpasswd \
-&&  adduser $user sudo && echo "$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+&&  adduser $user sudo && echo "$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && mkdir -p /mnt && chmod 777 /mnt
 
 RUN apt-get update \
     && apt-get install -y \
